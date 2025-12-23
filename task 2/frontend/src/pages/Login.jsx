@@ -23,18 +23,18 @@ function Login() {
       const { role } = response.data;
       console.log('User role:', role);
 
-      // Redirect based on role
+      // Redirect based on role - use window.location for cross-origin cookie support
       if (role === 'admin') {
-        // console.log('Redirecting to admin dashboard');
-        navigate('/admin-dashboard', { replace: true });
+        console.log('Redirecting to admin dashboard');
+        window.location.href = '/admin-dashboard';
       } else if (role === 'professor') {
-        // console.log('Redirecting to professor dashboard');
-        navigate('/professor-dashboard', { replace: true });
+        console.log('Redirecting to professor dashboard');
+        window.location.href = '/professor-dashboard';
       } else if (role === 'student') {
-        // console.log('Redirecting to student dashboard');
-        navigate('/student-dashboard', { replace: true });
+        console.log('Redirecting to student dashboard');
+        window.location.href = '/student-dashboard';
       } else {
-        // console.warn('Unknown role:', role);
+        console.warn('Unknown role:', role);
         setError(`Unknown role: ${role}. Please contact administrator.`);
       }
     } catch (err) {

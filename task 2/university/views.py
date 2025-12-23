@@ -131,9 +131,10 @@ def login_view(request):
                     'accessToken',
                     access_token,
                     httponly=False,  # Allow JS to read for Authorization header
-                    secure=False,  # change to True in production
-                    samesite='Lax',
-                    max_age=settings.JWT_EXPIRATION_DELTA_MINUTES * 60  # 15 minutes
+                    secure=True,  # Use True for HTTPS
+                    samesite='None',  # Allow cross-origin cookies
+                    max_age=settings.JWT_EXPIRATION_DELTA_MINUTES * 60,  # 15 minutes
+                    domain=None  # Don't set domain to allow cross-origin
                 )
 
                 # Store refresh token in HttpOnly cookie
@@ -141,9 +142,10 @@ def login_view(request):
                     'refreshToken',
                     refresh_token,
                     httponly=True,
-                    secure=False,  # change to True in production
-                    samesite='Lax',
-                    max_age=settings.JWT_REFRESH_EXPIRATION_DELTA_DAYS * 24 * 60 * 60  # 1 day
+                    secure=True,  # Use True for HTTPS
+                    samesite='None',  # Allow cross-origin cookies
+                    max_age=settings.JWT_REFRESH_EXPIRATION_DELTA_DAYS * 24 * 60 * 60,  # 1 day
+                    domain=None  # Don't set domain to allow cross-origin
                 )
 
                 return response
