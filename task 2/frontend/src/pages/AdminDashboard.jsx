@@ -196,7 +196,7 @@ function AdminDashboard() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
             <h2>Professors</h2>
             <div style={{ display: 'flex', gap: '10px' }}>
-              <button 
+              {/* <button 
                 onClick={handleCreateProfessor}
                 style={{ 
                   padding: '0.5rem 1rem', 
@@ -209,7 +209,7 @@ function AdminDashboard() {
                 }}
               >
                 + Add Professor
-              </button>
+              </button> */}
               <button 
                 onClick={handleShowProfessors} 
                 className="logout-btn"
@@ -294,7 +294,7 @@ function AdminDashboard() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
             <h2>Students</h2>
             <div style={{ display: 'flex', gap: '10px' }}>
-              <button 
+              {/* <button 
                 onClick={handleCreateStudent}
                 style={{ 
                   padding: '0.5rem 1rem', 
@@ -307,7 +307,7 @@ function AdminDashboard() {
                 }}
               >
                 + Add Student
-              </button>
+              </button> */}
               <button 
                 onClick={handleShowStudents} 
                 className="logout-btn"
@@ -505,6 +505,7 @@ function ProfessorForm({ professor, faculties, onClose, onSave }) {
               value={formData.username}
               onChange={(e) => setFormData({...formData, username: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
@@ -515,6 +516,7 @@ function ProfessorForm({ professor, faculties, onClose, onSave }) {
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
@@ -524,6 +526,7 @@ function ProfessorForm({ professor, faculties, onClose, onSave }) {
               value={formData.first_name}
               onChange={(e) => setFormData({...formData, first_name: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
@@ -533,6 +536,7 @@ function ProfessorForm({ professor, faculties, onClose, onSave }) {
               value={formData.last_name}
               onChange={(e) => setFormData({...formData, last_name: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           {!professor && (
@@ -685,6 +689,7 @@ function StudentForm({ student, faculties, onClose, onSave }) {
               value={formData.username}
               onChange={(e) => setFormData({...formData, username: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
@@ -695,6 +700,7 @@ function StudentForm({ student, faculties, onClose, onSave }) {
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
@@ -704,6 +710,7 @@ function StudentForm({ student, faculties, onClose, onSave }) {
               value={formData.first_name}
               onChange={(e) => setFormData({...formData, first_name: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
@@ -713,6 +720,7 @@ function StudentForm({ student, faculties, onClose, onSave }) {
               value={formData.last_name}
               onChange={(e) => setFormData({...formData, last_name: e.target.value})}
               style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+              disabled
             />
           </div>
           {!student && (
