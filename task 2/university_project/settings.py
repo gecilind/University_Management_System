@@ -140,10 +140,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:3001",
     "https://university-management-system-79k2bow7x-linds-projects-af049ea8.vercel.app",
+    "https://university-management-system-ebon.vercel.app",
     "https://university-management-system.vercel.app",  # In case you have a custom domain
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',

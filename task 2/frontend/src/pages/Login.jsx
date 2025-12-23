@@ -16,11 +16,12 @@ function Login() {
     setLoading(true);
 
     try {
-      // console.log('Attempting login with:', { username, password });
+      console.log('Attempting login with:', { username, password });
       const response = await authService.login(username, password);
-      // console.log('Login response:', response);
+      console.log('Login response:', response);
+      console.log('Response data:', response.data);
       const { role } = response.data;
-      // console.log('User role:', role);
+      console.log('User role:', role);
 
       // Redirect based on role
       if (role === 'admin') {
