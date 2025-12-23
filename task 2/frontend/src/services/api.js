@@ -19,9 +19,10 @@ const getCookie = (name) => {
   return null;
 };
 
-// Get JWT from cookies
+// Get JWT from localStorage (for cross-origin support)
 const getAccessToken = () => {
-  return getCookie('accessToken');
+  // Try localStorage first (for cross-origin), then fallback to cookies
+  return localStorage.getItem('accessToken') || getCookie('accessToken');
 };
 
 const api = axios.create({
@@ -74,7 +75,12 @@ api.interceptors.response.use(
         });
         const newAccessToken = renewResponse.data.access_token;
         
-        // Update the original request with new token (cookie is already set by backend)
+        // Store in localStorage for cross-origin support
+        if (newAccessToken) {
+          localStorage.setItem('accessToken', newAccessToken);
+        }
+        
+        // Update the original request with new token
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         
         // Retry original request
@@ -100,8 +106,12 @@ export const authService = {
   },
   
   logout: async () => {
-    await api.post('/logout/');
-    // Cookies are cleared by backend
+    try {
+      await api.post('/logout/');
+    } finally {
+      // Clear localStorage on logout
+      localStorage.removeItem('accessToken');
+    }
   },
 };
 

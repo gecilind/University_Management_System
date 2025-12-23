@@ -20,19 +20,24 @@ function Login() {
       const response = await authService.login(username, password);
       console.log('Login response:', response);
       console.log('Response data:', response.data);
-      const { role } = response.data;
+      const { role, access_token } = response.data;
       console.log('User role:', role);
 
-      // Redirect based on role - use window.location for cross-origin cookie support
+      // Store access token in localStorage for cross-origin support
+      if (access_token) {
+        localStorage.setItem('accessToken', access_token);
+      }
+
+      // Redirect based on role
       if (role === 'admin') {
         console.log('Redirecting to admin dashboard');
-        window.location.href = '/admin-dashboard';
+        navigate('/admin-dashboard', { replace: true });
       } else if (role === 'professor') {
         console.log('Redirecting to professor dashboard');
-        window.location.href = '/professor-dashboard';
+        navigate('/professor-dashboard', { replace: true });
       } else if (role === 'student') {
         console.log('Redirecting to student dashboard');
-        window.location.href = '/student-dashboard';
+        navigate('/student-dashboard', { replace: true });
       } else {
         console.warn('Unknown role:', role);
         setError(`Unknown role: ${role}. Please contact administrator.`);
