@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://lindgeci.pythonanywhere.com/api';
 
 // Helper function to get cookie value by name
 const getCookie = (name) => {
@@ -68,7 +68,10 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       try {
         // Call renew which sets new JWT in cookie and returns it in response body
-        const renewResponse = await axios.post(`${API_BASE_URL}/renew/`, {}, { withCredentials: true });
+        const renewResponse = await axios.post('/renew/', {}, { 
+          baseURL: API_BASE_URL,
+          withCredentials: true
+        });
         const newAccessToken = renewResponse.data.access_token;
         
         // Update the original request with new token (cookie is already set by backend)
